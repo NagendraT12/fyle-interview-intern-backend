@@ -5,7 +5,7 @@ To run the application using Docker Compose, follow these steps:
 1. **Clone the repository:**
 
    ```bash
-  (https://github.com/NagendraT12/fyle-interview-intern-backend.git)
+  [https://github.com/NagendraT12/fyle-interview-intern-backend.git]
    cd fyle-interview-intern-backend
    ```
 2. **Install docker and Docker Desktop**
