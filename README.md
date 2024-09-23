@@ -37,7 +37,6 @@ Sure! Here's a brief 10-20 line description for installing and running the appli
 
 ---
 
-This provides a concise overview for setting up the application using Docker Compose. Let me know if you need any adjustments!
 # Fyle Backend Challenge
 
 ## Who is this for?
@@ -90,6 +89,87 @@ bash run.sh
 ### Run Tests
 
 ```
+
+Here's how to modify the installation steps for Windows:
+
+---
+
+### **Installation (Windows)**
+
+1. **Fork the Repository**:
+   Fork this repository to your GitHub account.
+
+2. **Clone the Forked Repository**:
+   Clone the forked repository to your local machine using Git:
+   ```bash
+   git clone https://github.com/<your-username>/fyle-interview-intern-backend.git
+   cd fyle-interview-intern-backend
+   ```
+
+3. **Install Virtual Environment**:
+   Install the required virtual environment using Python 3.8 (Make sure Python 3.8 is installed).
+   In the terminal, run:
+   ```bash
+   virtualenv env --python=python3.8
+   ```
+
+4. **Activate Virtual Environment** (Windows):
+   To activate the virtual environment on Windows, run:
+   ```bash
+   .\env\Scripts\activate
+   ```
+
+5. **Install Requirements**:
+   Install the required Python packages by running:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+6. **Reset the Database**:
+
+   a. Set the `FLASK_APP` environment variable for Windows:
+   ```powershell
+   $env:FLASK_APP = "core/server.py"
+   ```
+
+   b. Remove the old SQLite database (if it exists):
+   ```powershell
+   Remove-Item core\store.sqlite3
+   ```
+
+   c. Apply the migrations to update the database:
+   ```bash
+   flask db upgrade -d core/migrations/
+   ```
+
+7. **Start the Server**:
+   To start the server, execute:
+   ```powershell
+   .\run.sh
+   ```
+
+   If `.sh` files aren't supported, you can manually run the contents of `run.sh` inside the terminal.
+
+8. **Run Tests**:
+   Run the test cases to ensure everything works:
+   ```bash
+   pytest -vvv -s tests/
+   ```
+
+9. **Generate Test Coverage Report**:
+   For a test coverage report, run:
+   ```bash
+   pytest --cov
+   ```
+
+   To view the HTML coverage report, open:
+   ```bash
+   open htmlcov/index.html
+   ```
+
+---
+
+
 pytest -vvv -s tests/
 
 # for test coverage report
