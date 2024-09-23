@@ -1,4 +1,4 @@
-Sure! Here's a brief 10-20 line description for installing and running the application using Docker Compose:
+
 
 ---
 
@@ -88,11 +88,6 @@ bash run.sh
 ```
 ### Run Tests
 
-```
-
-Here's how to modify the installation steps for Windows:
-
----
 
 ### **Installation (Windows)**
 
