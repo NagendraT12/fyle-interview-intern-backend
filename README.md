@@ -1,3 +1,27 @@
+## Quick Start
+
+To run the application using Docker Compose, follow these steps:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Dhruvin3103/fyle-interview-intern-backend
+   cd fyle-interview-intern-backend
+   ```
+2. **Install docker and Docker Desktop**
+
+3. **Start docker**
+    ```bash
+    docker-compose up
+    ```
+5. **Running test case (run it again if test cases fails there might be some issue on first try)**
+    ```bash
+    docker-compose run test
+    ```
+6. **To Stop**
+    ```bash
+    docker-compose down
+    ```
 # Fyle Backend Challenge
 
 ## Who is this for?
