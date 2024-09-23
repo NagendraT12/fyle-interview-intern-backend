@@ -1,5 +1,7 @@
 from core.models.assignments import AssignmentStateEnum, GradeEnum
-
+import pytest
+from sqlalchemy import text
+from core import db
 
 def test_get_assignments(client, h_principal):
     response = client.get(

@@ -3,3 +3,4 @@ SELECT teacher_id, COUNT(*) AS grade_count_of_A
 FROM assignments
 WHERE grade = 'A'
 GROUP BY teacher_id;
+ORDER BY grade_count_of_A DESC;

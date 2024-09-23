@@ -89,8 +89,13 @@ class Assignment(db.Model):
     def get_assignments_by_student(cls, student_id):
         return cls.filter(cls.student_id == student_id).all()
 
-    # The second commentof teacher
+    # 3rd 
     @classmethod
     def get_assignments_by_teacher(cls,teacher_id):
         return cls.filter(cls.teacher_id == teacher_id).all()
-
+    
+    @classmethod
+    def get_graded_submitted_assignment(cls):
+        print(cls)
+        return cls.filter(cls.state.in_(['GRADED', 'SUBMITTED'])).all()
+    # end 
