@@ -3,7 +3,7 @@ from core import db
 from core.apis import decorators
 from core.apis.responses import APIResponse
 from core.models.assignments import Assignment
-
+from flask import make_response, jsonify
 from .schema import AssignmentSchema, AssignmentSubmitSchema
 student_assignments_resources = Blueprint('student_assignments_resources', __name__)
 
@@ -22,7 +22,16 @@ def list_assignments(p):
 @decorators.authenticate_principal
 def upsert_assignment(p, incoming_payload):
     """Create or Edit an assignment"""
+    # To identify the null
+    if incoming_payload['content'] is None:
+        error_response = {
+            'error': 'ValidationError',
+            'message': 'Content cannot be null'
+        }
+        return make_response(jsonify(error_response), 400)
+    # end here 
     assignment = AssignmentSchema().load(incoming_payload)
+    
     assignment.student_id = p.student_id
 
     upserted_assignment = Assignment.upsert(assignment)
@@ -36,8 +45,26 @@ def upsert_assignment(p, incoming_payload):
 @decorators.authenticate_principal
 def submit_assignment(p, incoming_payload):
     """Submit an assignment"""
+    print(incoming_payload)
     submit_assignment_payload = AssignmentSubmitSchema().load(incoming_payload)
+    # nagendra cm1
+    assignment = Assignment.query.get(submit_assignment_payload.id)
+    if assignment is None:
+        error_response = {
+            'error': 'NotFoundError',
+            'message': 'Assignment not found'
 
+        }
+        return make_response(jsonify(error_response), 404)
+    print(assignment.state)
+    if assignment.state != 'DRAFT':
+        print('error')
+        error_response = {
+            'error': 'FyleError',
+            'message': 'only a draft assignment can be submitted'
+        }
+        return make_response(jsonify(error_response), 400)
+ 
     submitted_assignment = Assignment.submit(
         _id=submit_assignment_payload.id,
         teacher_id=submit_assignment_payload.teacher_id,
